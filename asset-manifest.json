@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/controle-natthan/static/css/main.730c4da8.css",
-    "main.js": "/controle-natthan/static/js/main.64f7495b.js",
+    "main.js": "/controle-natthan/static/js/main.188ede01.js",
     "static/js/453.366efd4d.chunk.js": "/controle-natthan/static/js/453.366efd4d.chunk.js",
     "static/media/quadri_login_page.jpg": "/controle-natthan/static/media/quadri_login_page.389487d2101f2501f8a3.jpg",
     "static/media/bootstrap-icons.woff?": "/controle-natthan/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
     "static/media/bootstrap-icons.woff2?": "/controle-natthan/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
     "index.html": "/controle-natthan/index.html",
     "main.730c4da8.css.map": "/controle-natthan/static/css/main.730c4da8.css.map",
-    "main.64f7495b.js.map": "/controle-natthan/static/js/main.64f7495b.js.map",
+    "main.188ede01.js.map": "/controle-natthan/static/js/main.188ede01.js.map",
     "453.366efd4d.chunk.js.map": "/controle-natthan/static/js/453.366efd4d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.730c4da8.css",
-    "static/js/main.64f7495b.js"
+    "static/js/main.188ede01.js"
   ]
 }
