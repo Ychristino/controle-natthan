@@ -1,0 +1,65 @@
+const LoginStyle = {
+    container: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundColor: "#f0f2f5",
+        padding:"0 20%",
+    },
+    form: {
+        backgroundColor: "#fff",
+        padding: "20px",
+        borderRadius: "8px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        width: "45%",
+        height: "60%",
+        textAlign: "center",
+        margin: "auto",
+    },
+    imagePanel:{
+        backgroundColor: "#bbbbbb",
+        padding: "20px",
+        borderRadius: "8px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        width: "55%",
+        height: "60%",
+        textAlign: "center",
+    },
+    title: {
+        marginBottom: "20px",
+        color: "#333",
+    },
+    label: {
+        display: "block",
+        textAlign: "left",
+        marginBottom: "5px",
+        fontWeight: "bold",
+        color: "#333",
+    },
+    input: {
+        width: "100%",
+        padding: "10px",
+        marginBottom: "15px",
+        border: "1px solid #ccc",
+        borderRadius: "4px",
+        boxSizing: "border-box",
+    },
+    button: {
+        width: "100%",
+        padding: "10px",
+        backgroundColor: "#28a745",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+        fontSize: "16px",
+    },
+    error: {
+        color: "red",
+        marginBottom: "10px",
+        fontSize: "14px",
+    },
+};
+
+export default LoginStyle;
