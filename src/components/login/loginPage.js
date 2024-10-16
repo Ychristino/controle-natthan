@@ -15,7 +15,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    login();
+    navigate('/in');
+
     // Validação básica
     if (email === "" || password === "") {
       setError("Por favor, preencha todos os campos.");
@@ -25,9 +28,6 @@ const Login = () => {
     setEmail("");
     setPassword("");
     setError("");
-
-    login();
-    navigate('/in');
   };
 
   return (

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import OrderFormData from '../../content/pageData/orderFormData';
 import { FaTrash } from 'react-icons/fa';
+import ServiceFormData from '../../content/pageData/serviceFormData';
+import { formatarValor, removerFormatacaoValor } from '../../content/utils/formats';
 
 // Mock de dados para pessoas cadastradas
 const clientsMock = [
@@ -22,7 +23,7 @@ const productsMock = [
   { id: 5, nome: 'Produto E', valor: 450.0 },
 ];
 
-const CadastroVenda = () => {
+const CadastroServico = () => {
   const today = new Date().toISOString().split('T')[0];
   const [selectedClient, setSelectedClient] = useState(null); // Cliente selecionado
   const [searchClientTerm, setSearchClientTerm] = useState(''); // Termo de busca do cliente
@@ -32,7 +33,8 @@ const CadastroVenda = () => {
   const [searchProductTerm, setSearchProductTerm] = useState(''); // Termo de busca do produto
   const [orderDate, setOrderDate] = useState(today); // Data do pedido
   const [paymentDate, setPaymentDate] = useState(today); // Data do pagamento
-  const [pageData, setPageData] = useState(OrderFormData['pt-br']);
+  const [serviceValue, setServiceValue] = useState(''); // Data do pagamento
+  const [pageData, setPageData] = useState(ServiceFormData['pt-br']);
 
   // Função para buscar e selecionar um cliente
   const handleClientSearch = (e) => {
@@ -88,7 +90,29 @@ const CadastroVenda = () => {
 
   // Função para calcular o valor total da venda
   const calculateTotal = () => {
-    return selectedProducts.reduce((total, product) => total + product.valor * product.quantity, 0);
+    let valTot = 0;
+    if (selectedProducts != undefined)
+        valTot = selectedProducts.reduce((total, product) => total + product.valor * product.quantity, 0);
+    if (serviceValue.valorServico !== undefined)
+        valTot += parseFloat(removerFormatacaoValor(serviceValue.valorServico));
+
+    return valTot
+};
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === 'valorServico') {
+      setServiceValue((prevData) => ({
+        ...prevData,
+        [name]: formatarValor(value, pageData.countryFormatValue, pageData.currencyValue), // Aplica a máscara de moeda para valorCompra
+      }));
+    } else {
+        setServiceValue((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   return (
@@ -159,8 +183,21 @@ const CadastroVenda = () => {
             </div>
         </div>
 
+        <div className="col-md-4">
+            <h5>{pageData.labelServiceValue}</h5>
+                <input
+            type="text"
+            name="valorServico"
+            className="form-control"
+            onChange={handleChange}
+            value={serviceValue.valorServico}
+            placeholder={pageData.inputServiceValuePlaceholder}
+            required
+            />
+        </div>
+
         {/* Seção para adicionar produtos */}
-        <div className="d-flex">
+        <div className="d-flex mt-4 mb-4">
           {/* Coluna da esquerda para seleção de produtos */}
           <div className="flex-fill me-3">
             <h5>{pageData.titleAddProducts}</h5>
@@ -224,11 +261,11 @@ const CadastroVenda = () => {
                     </li>
                   ))}
                 </ul>
-                <h6 className="mt-2">Total: R$ {calculateTotal().toFixed(2)}</h6>
               </div>
             )}
           </div>
         </div>
+        <h6 className="mt-2 d-flex justify-content-end">Total: {formatarValor(calculateTotal().toFixed(2))}</h6>
 
         {/* Botão de enviar */}
         <button className="btn btn-success mt-3">
@@ -239,4 +276,4 @@ const CadastroVenda = () => {
   );
 };
 
-export default CadastroVenda;
+export default CadastroServico;

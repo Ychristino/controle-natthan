@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductFormData from '../../content/pageData/productFormData';
+import { formatarValor, removerFormatacaoValor } from '../../content/utils/formats';
 
 const CadastroProduto = () => {
   const [produtoData, setProdutoData] = useState({
@@ -12,21 +13,6 @@ const CadastroProduto = () => {
     quantidade: 0,
   });
   const [pageData, setPageData] = useState(ProductFormData["pt-br"]);
-  
-  // Função para formatar o valor no estilo monetário enquanto o usuário digita
-  const formatarValor = (valor) => {
-    const valorNumerico = valor.replace(/\D/g, '');
-    const valorFormatado = (Number(valorNumerico) / 100).toLocaleString(pageData.countryFormatValue, {
-      style: 'currency',
-      currency: pageData.currencyValue,
-    });
-    return valorFormatado;
-  };
-
-  // Função para remover a formatação no momento de salvar
-  const removerFormatacaoValor = (valorFormatado) => {
-    return parseFloat(valorFormatado.replace(/[^\d,]/g, '').replace(',', '.'));
-  };
 
   const calcularValorVenda = (valorCompra, lucro) => {
     const valorCompraNum = removerFormatacaoValor(valorCompra);
@@ -34,7 +20,7 @@ const CadastroProduto = () => {
     
     // Calcular valor de venda
     const valorVenda = valorCompraNum + (valorCompraNum * (percentualLucro / 100));
-    return formatarValor(valorVenda.toFixed(2)); // Retorna o valor de venda formatado
+    return formatarValor(valorVenda.toFixed(2), pageData.countryFormatValue, pageData.currencyValue); // Retorna o valor de venda formatado
   };
 
   useEffect(() => {
@@ -53,7 +39,7 @@ const CadastroProduto = () => {
     if (name === 'valorCompra' || name === 'valorVenda') {
       setProdutoData((prevData) => ({
         ...prevData,
-        [name]: formatarValor(value), // Aplica a máscara de moeda para valorCompra
+        [name]: formatarValor(value, pageData.countryFormatValue, pageData.currencyValue), // Aplica a máscara de moeda para valorCompra
       }));
     } else {
       setProdutoData((prevData) => ({

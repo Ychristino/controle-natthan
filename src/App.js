@@ -13,6 +13,8 @@ import ListagemPedidos from './components/order/orderList';
 import ProtectedRoute from './content/auth/ProtectedRoute';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import LoggedPage from './components/login/loggedPage';
+import CadastroServico from './components/service/serviceForm';
+import ListagemServicos from './components/service/serviceList';
 
 const App = () => {
   return (
@@ -53,6 +55,17 @@ const App = () => {
               <ListagemPedidos />
             </ProtectedRoute>
           } />
+          <Route path="/cadastro-servico" element={
+            <ProtectedRoute>
+              <CadastroServico />
+            </ProtectedRoute>
+          } />
+          <Route path="/listagem-servico" element={
+            <ProtectedRoute>
+              <ListagemServicos />
+            </ProtectedRoute>
+          } />
+
           <Route path="/in" element={
             <ProtectedRoute>
               <LoggedPage />
